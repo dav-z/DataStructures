@@ -25,7 +25,7 @@ public class Rectangle extends Shape {
 	
 	@Override
 	public String toString() {
-		String dimensions = String.format("(%d, %d)", width, height);
+		String dimensions = String.format("(%.1f, %.1f)", width, height);
 		return dimensions;
 	}
 
