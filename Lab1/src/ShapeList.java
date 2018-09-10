@@ -32,7 +32,7 @@ public class ShapeList extends ArrayList<Shape> {
 			Shape A = this.get(i);
 			for(int j = i + 1; j < this.size(); j++) {
 				Shape B = this.get(j);
-				if( A.compareTo(B) != 0 ) {
+				if( A.compareTo(B) == 0 && A.equals(B) ) {
 					isDistinct = false;
 				}
 			}
