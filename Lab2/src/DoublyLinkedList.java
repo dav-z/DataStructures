@@ -147,13 +147,14 @@ public class DoublyLinkedList<E> {
 	// Both methods return true if size == 0.
 	public boolean frontIsValid() {
 		Node<E> current = lastNode;
+		E currentEl = null;
+		E firstEl = firstNode.element;
 		int size = this.size();
 		BackwardIterator<E> test = new BackwardIterator<E>(current);
 		while(test.hasNext()) {
-			size--;
-			test.next();
+			currentEl = test.next();
 		}
-		if(size == 0) {
+		if(currentEl == firstEl || size == 0) {
 			return true;
 		}
 		else {
@@ -163,13 +164,14 @@ public class DoublyLinkedList<E> {
 
 	public boolean backIsValid() {
 		Node<E> current = firstNode;
+		E currentEl = null;
+		E lastEl = lastNode.element;
 		int size = this.size();
 		ForwardIterator<E> test = new ForwardIterator<E>(current);
 		while(test.hasNext()) {
-			size--;	
-			test.next();
+			currentEl = test.next();
 		}
-		if(size == 0) {
+		if(currentEl == lastEl || size == 0) {
 			return true;
 		}
 		else {
