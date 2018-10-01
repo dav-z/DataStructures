@@ -41,7 +41,6 @@ public class DoublyLinkedList<E> {
 			Node<E> previous = getNode(index - 1);
 			previous.next = new Node<E>(element, lastNode, null);
 			lastNode = previous.next;
-//			System.out.println(lastNode.next.element);
 			size++;
 		}
 	}
@@ -57,7 +56,7 @@ public class DoublyLinkedList<E> {
  	// You must appropriately update the firstNode and lastNode.
  	// Hint: It's recommended that you use if statements to split into four or five different cases.
 	public E remove(int index) {
-		if(index < 0 || index > size) {
+		if(index < 0 || index > size || size == 0) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
 		else if(index == 0) {
@@ -76,7 +75,8 @@ public class DoublyLinkedList<E> {
 		else {
 			Node<E> previous = getNode(index - 1);
 			E oldValue = previous.next.element;
-			previous.next = lastNode;
+			lastNode = previous;
+			previous.next = null;
 			size--;
 			return oldValue;
 		}
@@ -148,7 +148,7 @@ public class DoublyLinkedList<E> {
 	public boolean frontIsValid() {
 		Node<E> current = lastNode;
 		int size = this.size();
-		BackwardIterator test = new BackwardIterator(current);
+		BackwardIterator<E> test = new BackwardIterator<E>(current);
 		while(test.hasNext()) {
 			size--;
 			test.next();
@@ -164,7 +164,7 @@ public class DoublyLinkedList<E> {
 	public boolean backIsValid() {
 		Node<E> current = firstNode;
 		int size = this.size();
-		ForwardIterator<E> test = new ForwardIterator(current);
+		ForwardIterator<E> test = new ForwardIterator<E>(current);
 		while(test.hasNext()) {
 			size--;	
 			test.next();
