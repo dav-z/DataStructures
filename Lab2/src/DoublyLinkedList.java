@@ -62,6 +62,7 @@ public class DoublyLinkedList<E> {
 		else if(index == 0) {
 			E oldValue = firstNode.element;
 			firstNode = firstNode.next;
+			lastNode = firstNode;
 			size--;
 			return oldValue;
 		}
@@ -69,6 +70,7 @@ public class DoublyLinkedList<E> {
 			Node<E> previous = getNode(index - 1);
 			E oldValue = previous.next.element;
 			previous.next = previous.next.next;
+			previous.next.prev = previous;
 			size--;
 			return oldValue;
 		}
@@ -103,7 +105,7 @@ public class DoublyLinkedList<E> {
 		if(index < 0 || index >= size) {
 			throw new IndexOutOfBoundsException("Invalid index.");
 		}
-		else if(index < 2) {
+		else if(index < (size / 2)) {
 			return getNodeFromFront(index);
 		}
 		else {
@@ -130,10 +132,9 @@ public class DoublyLinkedList<E> {
 		}
 		else {
 			Node<E> current = lastNode;
-			for(int i = size - 1; i > index + 1; i--) {
+			for(int i = size; i > index + 1; i--) {
 				current = current.prev;
 			}
-			
 			return current;
 		}
 	}
